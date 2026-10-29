@@ -25,9 +25,10 @@ const capabilities = [
 ];
 
 const examples = [
-  { number: "01", title: "Keeping a US service business moving", tag: "Executive support · Everblue Pool Pros", text: "Coordinating customer communications, technician routes, appointments, quotations, work orders, and follow-up remotely from South Africa." },
-  { number: "02", title: "Turning complex property into clarity", tag: "Operations · NPPM Properties", text: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships." },
-  { number: "03", title: "Building brands with purpose", tag: "Digital marketing · Self-employed", text: "Creating websites, social content, branded materials, and written campaigns that help businesses communicate consistently and connect with their audiences." },
+  { number: "01", slug: "service-business-support", title: "Keeping a US service business moving", tag: "Executive support · Everblue Pool Pros", text: "Coordinating customer communications, technician routes, appointments, quotations, work orders, and follow-up remotely from South Africa." },
+  { number: "02", slug: "property-operations", title: "Turning complex property into clarity", tag: "Operations · NPPM Properties", text: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships." },
+  { number: "03", slug: "brand-content", title: "Building brands with purpose", tag: "Digital marketing · Self-employed", text: "Creating websites, social content, branded materials, and written campaigns that help businesses communicate consistently and connect with their audiences." },
+  { number: "04", slug: "digital-systems", title: "Building practical digital systems", tag: "Digital systems · Workflow development", text: "Developing connected digital tools and workflows to organize information, streamline business processes, and make everyday operations easier to manage." },
 ];
 
 const Index = () => {
@@ -94,7 +95,7 @@ const Index = () => {
       <section className="work-section" id="work">
         <div className="work-top"><div><div className="section-label">Selected work</div><h2>Making things<br /><em>happen beautifully.</em></h2></div><p className="work-note">A few ways I&apos;ve helped people and teams find more focus, flow, and forward motion.</p></div>
         <div className="examples-list">
-          {examples.map((example) => <article className="example-row" key={example.number}><span className="example-number">{example.number}</span><div className="example-main"><p className="example-tag">{example.tag}</p><h3>{example.title}</h3><p>{example.text}</p></div><ArrowUpRight className="example-arrow" size={22} /></article>)}
+          {examples.map((example) => <a className="example-row" href={`/work/${example.slug}`} key={example.number}><span className="example-number">{example.number}</span><div className="example-main"><p className="example-tag">{example.tag}</p><h3>{example.title}</h3><p>{example.text}</p></div><ArrowUpRight className="example-arrow" size={22} /></a>)}
         </div>
         <div className="workspace-card"><div className="workspace-copy"><p className="eyebrow">The details matter</p><h3>A well-run day<br /><em>makes room for more.</em></h3><p>Reliable systems, thoughtful planning, and a human touch — it all adds up.</p></div><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="Warm, organized modern workspace" /></div>
       </section>
