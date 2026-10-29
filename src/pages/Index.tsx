@@ -67,9 +67,7 @@ const Index = () => {
         <div className="hero-visual fade-in delayed">
           <div className="portrait-frame">
             <img src="/rika-gerber-professional.png" alt="Professional portrait of Rika Gerber" />
-            <div className="portrait-note"><span>Currently</span><strong>making work<br />feel lighter.</strong></div>
           </div>
-          <div className="circle-stamp"><span>Organised</span><span>with care · 2026</span></div>
         </div>
         <div className="scroll-cue"><span>Scroll to explore</span><div className="scroll-line" /></div>
       </section>
