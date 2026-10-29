@@ -18,7 +18,7 @@ import {
 const capabilities = [
   { icon: CalendarDays, title: "Administration & Operations", text: "Managing priorities, schedules, records, and day-to-day workflows with care and consistency." },
   { icon: ClipboardList, title: "Digital Systems & Process Improvement", text: "Using digital tools and structured processes to keep information organised and work moving." },
-  { icon: FileText, title: "Business Communication & Documentation", text: "Preparing clear correspondence, reports, quotations, and business documents for clients and teams." },
+  { icon: FileText, title: "Business Writing & Documents", text: "Preparing clear correspondence, reports, quotations, and business documents for clients and teams." },
   { icon: MessageCircle, title: "Marketing & Content", text: "Creating websites, social content, articles, and branded materials that support consistent communication." },
   { icon: Plane, title: "Organization & Coordination", text: "Coordinating people, appointments, projects, and moving parts from planning through follow-up." },
   { icon: ShieldCheck, title: "Technology & Problem-Solving", text: "Adapting to new platforms, researching practical solutions, and resolving issues thoughtfully." },
@@ -85,7 +85,7 @@ const Index = () => {
       </section>
 
       <section className="capabilities-section">
-        <div className="section-heading"><div className="section-label">What I bring</div><p>Practical support across people, processes, platforms, and content.</p></div>
+        <div className="section-heading"><div className="section-label">What I bring</div><p>Practical support that brings structure, clarity, and better ways of working.</p></div>
         <div className="capabilities-grid">
           {capabilities.map(({ icon: Icon, title, text }) => <article className="capability-card" key={title}><Icon size={23} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
