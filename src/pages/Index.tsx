@@ -25,9 +25,9 @@ const capabilities = [
 ];
 
 const examples = [
-  { number: "01", title: "The calm behind the busy", tag: "Executive support", text: "Creating the structure that lets a founder stay focused: a clear week, a protected diary, and the right information at the right moment." },
-  { number: "02", title: "A better way to gather", tag: "Events & hospitality", text: "From guest lists to the final thank-you, coordinating considered gatherings that feel effortless for everyone involved." },
-  { number: "03", title: "Making space for momentum", tag: "Systems & projects", text: "Bringing order to growing businesses with practical workflows, polished documents, and thoughtful follow-through." },
+  { number: "01", title: "Keeping a US service business moving", tag: "Executive support · Everblue Pool Pros", text: "Coordinating customer communications, technician routes, appointments, quotations, work orders, and follow-up remotely from South Africa." },
+  { number: "02", title: "Turning complex property into clarity", tag: "Operations · NPPM Properties", text: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships." },
+  { number: "03", title: "Building brands with purpose", tag: "Digital marketing · Self-employed", text: "Creating websites, social content, branded materials, and written campaigns that help businesses communicate consistently and connect with their audiences." },
 ];
 
 const Index = () => {
@@ -40,8 +40,8 @@ const Index = () => {
     <main className="site-shell">
       <header className="site-header">
         <a href="#top" className="brand" aria-label="Poise home" onClick={closeMenu}>
-          <span className="brand-mark">PG</span>
-          <span className="brand-name">Poise<span> / </span>Grace</span>
+          <span className="brand-mark">RG</span>
+          <span className="brand-name">Rika<span> / </span>Gerber</span>
         </a>
         <button className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -56,9 +56,9 @@ const Index = () => {
 
       <section className="hero" id="top">
         <div className="hero-copy fade-in">
-          <p className="eyebrow"><Sparkles size={14} /> Executive assistant · London / Remote</p>
+          <p className="eyebrow"><Sparkles size={14} /> Executive assistant · South Africa / Remote</p>
           <h1>The thoughtful force<br /><em>behind the scenes.</em></h1>
-          <p className="hero-intro">I&apos;m Grace — an executive assistant who brings clarity, care, and a little more breathing room to ambitious people and growing businesses.</p>
+          <p className="hero-intro">I&apos;m Rika — a results-driven executive assistant who brings clarity, care, and a little more breathing room to ambitious people and growing businesses.</p>
           <div className="hero-actions">
             <a href="#work" className="button button-primary">Explore my work <ArrowDown size={17} /></a>
             <a href="#contact" className="text-link">Start a conversation <ArrowUpRight size={16} /></a>
@@ -69,7 +69,7 @@ const Index = () => {
             <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=85" alt="Professional woman working at a desk in a bright office" />
             <div className="portrait-note"><span>Currently</span><strong>making work<br />feel lighter.</strong></div>
           </div>
-          <div className="circle-stamp"><span>Organised</span><span>with care · 2024</span></div>
+          <div className="circle-stamp"><span>Organised</span><span>with care · 2026</span></div>
         </div>
         <div className="scroll-cue"><span>Scroll to explore</span><div className="scroll-line" /></div>
       </section>
@@ -80,8 +80,8 @@ const Index = () => {
           <h2>Good support is<br /><em>felt, not seen.</em></h2>
           <div className="intro-body">
             <p>I believe the best assistant is a steady presence: someone who notices what&apos;s needed before it&apos;s asked, holds the details with care, and creates the space for brilliant work to happen.</p>
-            <p>With a background in executive support, operations, and relationship management, I bring warmth to the practical and precision to the personal. I&apos;m here to make your day work better.</p>
-            <a href="#contact" className="underlined-link">More about my approach <ArrowUpRight size={15} /></a>
+              <p>With extensive experience in executive support, operations, property, and client relationships, I bring warmth to the practical and precision to the personal. Working remotely from Alberton, South Africa, I&apos;m here to make your day work better.</p>
+              <a href="#contact" className="underlined-link">More about my approach <ArrowUpRight size={15} /></a>
           </div>
         </div>
       </section>
@@ -104,18 +104,18 @@ const Index = () => {
       <section className="references-section" id="references">
         <div className="section-label">Kind words</div>
         <div className="quote-mark">“</div>
-        <blockquote>Grace has that rare combination of excellent judgement and genuine warmth. She made the complicated feel simple and gave me the confidence to focus on the work only I could do.</blockquote>
-        <div className="quote-attribution"><span className="avatar">JM</span><span><strong>James M.</strong><small>Founder, independent consultancy</small></span></div>
+        <blockquote>Rika brings professionalism, discretion, and genuine care to everything she does. She has a remarkable ability to keep complex work moving while making every person feel supported.</blockquote>
+        <div className="quote-attribution"><span className="avatar">HS</span><span><strong>Heidi S.</strong><small>Office Administrator, NPPM Properties</small></span></div>
       </section>
 
       <section className="contact-section" id="contact">
-        <div className="contact-heading"><div className="section-label">Say hello</div><h2>Let&apos;s make<br /><em>space for good work.</em></h2><p>Have a role, a project, or simply a sense that we might work well together? I&apos;d love to hear from you.</p><a className="email-link" href="mailto:hello@poisegrace.co.uk"><Mail size={18} /> hello@poisegrace.co.uk</a></div>
+        <div className="contact-heading"><div className="section-label">Say hello</div><h2>Let&apos;s make<br /><em>space for good work.</em></h2><p>Hiring for executive support, operations, or client coordination? I&apos;d love to hear how I can bring immediate value to your team.</p><a className="email-link" href="mailto:gerber.rika@outlook.com"><Mail size={18} /> gerber.rika@outlook.com</a><a className="email-link" href="tel:+27716109591"><span>+27 71 610 9591</span></a><a className="email-link" href="https://www.linkedin.com/in/rika-gerber-9bb095130/" target="_blank" rel="noreferrer"><span>LinkedIn profile <ArrowUpRight size={15} /></span></a></div>
         <div className="contact-form-wrap">
           {sent ? <div className="success-message"><span className="success-icon"><Check size={20} /></span><h3>Thank you for reaching out.</h3><p>Your message is on its way. I&apos;ll be in touch soon.</p><button className="underlined-link" onClick={() => setSent(false)}>Send another message</button></div> : <form onSubmit={(event) => { event.preventDefault(); setSent(true); }}><label>Name<input required type="text" placeholder="Your name" /></label><label>Email<input required type="email" placeholder="you@company.com" /></label><label>How can I help?<textarea required placeholder="Tell me a little about what you have in mind..." rows={4} /></label><button type="submit" className="button button-dark">Send your note <ArrowUpRight size={17} /></button></form>}
         </div>
       </section>
 
-      <footer className="site-footer"><a href="#top" className="brand"><span className="brand-mark">PG</span><span className="brand-name">Poise<span> / </span>Grace</span></a><p>Thoughtful support for ambitious work.</p><div className="footer-links"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div><span className="copyright">© 2024 Poise / Grace</span></footer>
+      <footer className="site-footer"><a href="#top" className="brand"><span className="brand-mark">RG</span><span className="brand-name">Rika<span> / </span>Gerber</span></a><p>Thoughtful support for ambitious work.</p><div className="footer-links"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div><span className="copyright">© 2026 Rika Gerber</span></footer>
     </main>
   );
 };
