@@ -16,12 +16,12 @@ import {
 } from "lucide-react";
 
 const capabilities = [
-  { icon: CalendarDays, title: "Executive support", text: "A calm, considered approach to complex calendars, priorities, and decision-making." },
-  { icon: Plane, title: "Travel & logistics", text: "Thoughtful itineraries and seamless arrangements, from first booking to final detail." },
-  { icon: MessageCircle, title: "Communication", text: "Clear, warm correspondence that keeps people informed and relationships strong." },
-  { icon: ClipboardList, title: "Projects & events", text: "Turning moving parts into a clear plan, with ownership from idea through delivery." },
-  { icon: FileText, title: "Documents & systems", text: "Smart, simple systems that make information easy to find and work easier to do." },
-  { icon: ShieldCheck, title: "Discretion", text: "Trusted with sensitive information and the quiet confidence to handle what matters." },
+  { icon: CalendarDays, title: "Administration & Operations", text: "Managing priorities, schedules, records, and day-to-day workflows with care and consistency." },
+  { icon: ClipboardList, title: "Digital Systems & Process Improvement", text: "Using digital tools and structured processes to keep information organised and work moving." },
+  { icon: FileText, title: "Business Communication & Documentation", text: "Preparing clear correspondence, reports, quotations, and business documents for clients and teams." },
+  { icon: MessageCircle, title: "Marketing & Content", text: "Creating websites, social content, articles, and branded materials that support consistent communication." },
+  { icon: Plane, title: "Organization & Coordination", text: "Coordinating people, appointments, projects, and moving parts from planning through follow-up." },
+  { icon: ShieldCheck, title: "Technology & Problem-Solving", text: "Adapting to new platforms, researching practical solutions, and resolving issues thoughtfully." },
 ];
 
 const examples = [
@@ -58,7 +58,7 @@ const Index = () => {
         <div className="hero-copy fade-in">
           <p className="eyebrow"><Sparkles size={14} /> Executive assistant · South Africa / Remote</p>
           <h1>The thoughtful force<br /><em>behind the scenes.</em></h1>
-          <p className="hero-intro">I&apos;m Rika — a results-driven executive assistant who brings clarity, care, and a little more breathing room to ambitious people and growing businesses.</p>
+          <p className="hero-intro">I&apos;m Rika — an executive assistant who combines dependable administration and operations support with digital systems, process improvement, professional communication, and content creation.</p>
           <div className="hero-actions">
             <a href="#work" className="button button-primary">Explore my work <ArrowDown size={17} /></a>
             <a href="#contact" className="text-link">Start a conversation <ArrowUpRight size={16} /></a>
@@ -85,7 +85,7 @@ const Index = () => {
       </section>
 
       <section className="capabilities-section">
-        <div className="section-heading"><div className="section-label">What I bring</div><p>Quietly capable, naturally curious, and always three steps ahead.</p></div>
+        <div className="section-heading"><div className="section-label">What I bring</div><p>Practical support across people, processes, platforms, and content.</p></div>
         <div className="capabilities-grid">
           {capabilities.map(({ icon: Icon, title, text }) => <article className="capability-card" key={title}><Icon size={23} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
