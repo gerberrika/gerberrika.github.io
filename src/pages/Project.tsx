@@ -48,7 +48,7 @@ const projects: Record<string, Project> = {
     category: "Operations · NPPM Properties",
     title: "Turning complex property into clarity",
     description: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships.",
-    image: { src: "/projects/nppm-1.jpeg", alt: "NPPM Properties promotional artwork", caption: "NPPM Properties promotional artwork." },
+    image: { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties Offer to Purchase artwork", caption: "NPPM Properties Offer to Purchase artwork." },
     focus: ["Executive support, complex schedules, and confidential correspondence", "Property transactions, mandates, lease agreements, and legal documentation", "Tenant lifecycle administration, inspections, maintenance, and contractor coordination", "Audit-ready records, compliance certifications, and stakeholder communication"],
     sections: [
       { title: "My Role & Responsibilities", content: ["Administrative and operational support to the Principal", "Property transaction coordination and documentation", "Lease agreements, mandates, and property records", "Client, tenant, contractor, and stakeholder communication", "Property maintenance coordination"] },
