@@ -14,7 +14,7 @@ const Experience = () => (
       <p className="section-label">Professional experience</p>
       <h1>Experience</h1>
       <p className="project-lead">A considered blend of executive support, operations, digital systems, communication and creative work.</p>
-      <a className="button button-primary experience-cv-button" href={cvPath} download="Rika-Gerber-CV.pdf"><Download size={17} /> Download My CV</a>
+      <a className="button button-primary experience-cv-button" href={cvPath} target="_blank" rel="noreferrer"><Download size={17} /> View My Resume</a>
     </div>
   </main>
 );
