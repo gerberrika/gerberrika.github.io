@@ -27,6 +27,7 @@ type Project = {
   focus: string[];
   image?: { src: string; alt: string; caption: string };
   sections?: { title: string; content: string | string[] }[];
+  gallery?: GalleryProject["screenshots"];
   caseStudy?: CaseStudy;
   galleryProject?: GalleryProject;
 };
@@ -52,6 +53,17 @@ const projects: Record<string, Project> = {
       { title: "My Role & Responsibilities", content: ["Administrative and operational support to the Principal", "Property transaction coordination and documentation", "Lease agreements, mandates, and property records", "Client, tenant, contractor, and stakeholder communication", "Property maintenance coordination"] },
       { title: "Property Marketing & Content", content: ["Property marketing and promotional material", "Educational property content and information graphics"] },
     ],
+    gallery: [
+      { src: "/projects/nppm-1.jpeg", alt: "NPPM Properties buying or selling promotional artwork", caption: "Promotional artwork helping buyers and sellers connect with NPPM Properties." },
+      { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties offer to purchase educational content", caption: "Educational property content explaining the offer to purchase process." },
+      { src: "/projects/nppm-3.jpeg", alt: "NPPM Properties chocolate cake recipe social graphic", caption: "Branded social media content created for audience engagement." },
+      { src: "/projects/nppm-4.jpeg", alt: "NPPM Properties pre-approval benefits educational graphic", caption: "Buyer education content explaining the benefits of pre-approval." },
+      { src: "/projects/nppm-5.jpeg", alt: "NPPM Properties spring floral promotional artwork", caption: "Seasonal promotional artwork with NPPM Properties branding." },
+      { src: "/projects/nppm-6.jpeg", alt: "NPPM Properties where dreams meet reality graphic", caption: "Visual storytelling graphic supporting the property brand." },
+      { src: "/projects/nppm-7.jpeg", alt: "NPPM Properties home and space promotional graphic", caption: "Promotional content encouraging property conversations." },
+      { src: "/projects/nppm-8.jpeg", alt: "NPPM Properties property practitioner recruitment graphic", caption: "Recruitment artwork supporting the growth of the property team." },
+      { src: "/projects/nppm-9.jpeg", alt: "NPPM Properties Offer to Purchase Explained infographic", caption: "Additional Offer to Purchase Explained infographic." },
+    ],
   },
   "property-brand-content": {
     category: "Marketing & content · NPPM Properties",
@@ -68,6 +80,7 @@ const projects: Record<string, Project> = {
         { src: "/projects/nppm-6.jpeg", alt: "NPPM Properties where dreams meet reality graphic", caption: "Visual storytelling graphic supporting the property brand." },
         { src: "/projects/nppm-7.jpeg", alt: "NPPM Properties home and space promotional graphic", caption: "Promotional content encouraging property conversations." },
         { src: "/projects/nppm-8.jpeg", alt: "NPPM Properties property practitioner recruitment graphic", caption: "Recruitment artwork supporting the growth of the property team." },
+        { src: "/projects/nppm-9.jpeg", alt: "NPPM Properties Offer to Purchase Explained infographic", caption: "Additional Offer to Purchase Explained infographic." },
       ],
       overview: "During my time at NPPM Properties, I contributed to the company's marketing and communication through the creation of visual content and promotional materials. My work included designing property-related advertisements, developing educational content for potential buyers and sellers, and creating branded graphics for social media. The aim was to present information in a clear, accessible and visually engaging way while maintaining a consistent business identity.",
       contribution: ["Promotional marketing artwork and property advertisements", "Educational property content for buyers and sellers", "Social media graphics and written content", "Branded visual communication", "Presenting property information in a clear and accessible format"],
@@ -157,9 +170,20 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} focus={project.focus} sections={project.sections} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
       </div>
     </main>
+  );
+};
+
+const ProjectGallery = ({ screenshots }: { screenshots: GalleryProject["screenshots"] }) => {
+  const [preview, setPreview] = useState<GalleryProject["screenshots"][number] | null>(null);
+
+  return (
+    <div className="project-gallery">
+      {screenshots.map((screenshot) => <figure className="project-gallery-card" key={screenshot.src}><button type="button" className="project-gallery-button" onClick={() => setPreview(screenshot)} aria-label={`Open larger preview: ${screenshot.alt}`}><img src={screenshot.src} alt={screenshot.alt} /><span className="project-gallery-expand">View larger</span></button><figcaption>{screenshot.caption}</figcaption></figure>)}
+      {preview && <div className="screenshot-lightbox" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}><button className="lightbox-close" aria-label="Close screenshot preview" onClick={() => setPreview(null)}><X size={20} /></button><figure onClick={(event) => event.stopPropagation()}><img src={preview.src} alt={preview.alt} /><figcaption>{preview.caption}</figcaption></figure></div>}
+    </div>
   );
 };
 
@@ -180,13 +204,14 @@ const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
   );
 };
 
-const LegacyProjectContent = ({ image, focus, sections = [] }: { image?: Project["image"]; focus: string[]; sections?: Project["sections"] }) => (
+const LegacyProjectContent = ({ image, focus, sections = [], gallery }: { image?: Project["image"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
   <>
     {image && <figure className="case-study-image"><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
     <div className="project-detail-line" />
     <h2>Project focus</h2>
     <ul>{focus.map((item) => <li key={item}>{item}</li>)}</ul>
     {sections.map((section) => <section className="case-study-section" key={section.title}><h2>{section.title}</h2>{Array.isArray(section.content) ? <ul>{section.content.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{section.content}</p>}</section>)}
+    {gallery && <ProjectGallery screenshots={gallery} />}
     <p className="project-note">This overview reflects the scope of work represented in my portfolio. Further details can be discussed confidentially.</p>
   </>
 );
