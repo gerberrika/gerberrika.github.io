@@ -26,6 +26,7 @@ type Project = {
   description: string;
   focus: string[];
   image?: { src: string; alt: string; caption: string };
+  imageDisplay?: "portfolio";
   sections?: { title: string; content: string | string[] }[];
   gallery?: GalleryProject["screenshots"];
   caseStudy?: CaseStudy;
@@ -48,7 +49,8 @@ const projects: Record<string, Project> = {
     category: "Operations · NPPM Properties",
     title: "Turning complex property into clarity",
     description: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships.",
-    image: { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties Offer to Purchase artwork", caption: "NPPM Properties Offer to Purchase artwork." },
+    image: { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties Offer to Purchase artwork", caption: "NPPM Properties – Offer to Purchase Explained." },
+    imageDisplay: "portfolio",
     focus: ["Executive support, complex schedules, and confidential correspondence", "Property transactions, mandates, lease agreements, and legal documentation", "Tenant lifecycle administration, inspections, maintenance, and contractor coordination", "Audit-ready records, compliance certifications, and stakeholder communication"],
     sections: [
       { title: "My Role & Responsibilities", content: ["Administrative and operational support to the Principal", "Property transaction coordination and documentation", "Lease agreements, mandates, and property records", "Client, tenant, contractor, and stakeholder communication", "Property maintenance coordination"] },
@@ -157,7 +159,7 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
       </div>
     </main>
   );
@@ -191,9 +193,9 @@ const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
   );
 };
 
-const LegacyProjectContent = ({ image, focus, sections = [], gallery }: { image?: Project["image"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
+const LegacyProjectContent = ({ image, imageDisplay, focus, sections = [], gallery }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
   <>
-    {image && <figure className="case-study-image"><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
+    {image && <figure className={`case-study-image${imageDisplay === "portfolio" ? " case-study-image-portfolio" : ""}`}><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
     <div className="project-detail-line" />
     <h2>Project focus</h2>
     <ul>{focus.map((item) => <li key={item}>{item}</li>)}</ul>
