@@ -1,0 +1,45 @@
+.button-outline {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.button-outline:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.cv-home-link {
+  margin-top: 20px;
+}
+
+.cv-contact-link {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 7px;
+  margin-top: 20px;
+  text-decoration: underline;
+  text-decoration-color: var(--terracotta);
+  text-underline-offset: 5px;
+}
+
+.cv-contact-link:hover {
+  color: var(--terracotta);
+}
+
+.experience-content {
+  min-height: 430px;
+}
+
+.experience-cv-button {
+  margin-top: 28px;
+}
+
+@media (max-width: 800px) {
+  .experience-content {
+    min-height: 360px;
+  }
+}
