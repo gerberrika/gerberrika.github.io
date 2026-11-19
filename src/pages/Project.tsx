@@ -26,6 +26,7 @@ type Project = {
   title: string;
   description: string;
   focus: string[];
+  selectedProjects?: { title: string; description: string; image: string; alt: string; href: string }[];
   image?: { src: string; alt: string; caption: string };
   imageDisplay?: "portfolio";
   imageEducation?: { title: string; description: string; points: string[] };
@@ -107,9 +108,17 @@ const projects: Record<string, Project> = {
   },
   "digital-systems": {
     category: "Digital systems · Workflow development",
-    title: "Building practical digital systems",
-    description: "Developing connected digital tools and workflows to organize information, streamline business processes, and make everyday operations easier to manage.",
-    focus: ["Structured digital records and business information", "Connected tools for communication, planning, and collaboration", "Practical workflows that support everyday administration", "Thoughtful problem-solving across new platforms and processes"],
+    title: "Building Practical Digital Systems",
+    description: "I enjoy finding better ways to work. When I identify gaps in existing processes, I look for practical ways to solve them through technology. From custom business applications and automated workflows to digital quoting tools, I develop solutions that make everyday operations more organised, connected and efficient.",
+    focus: ["Custom business applications and digital tools.", "Workflow design and process automation.", "Client, employee and operational management systems.", "Digital quoting, documentation and reporting.", "Database structures and connected information.", "Problem-solving through technology and continuous improvement."],
+    selectedProjects: [
+      { title: "EverBlue Flow", description: "A business operations platform designed to connect clients, properties, jobs, tasks, scheduling, quotations and follow-ups in one organised system.", image: "/projects/flow-dashboard.png", alt: "EverBlue Flow dashboard", href: "/work/everblue-flow" },
+      { title: "EverBlue Quick Quote", description: "A digital quoting solution designed to structure customer information, service details, line items, pricing and quote calculations.", image: "/projects/quick-quote-dashboard.png", alt: "EverBlue Quick Quote dashboard", href: "/work/everblue-quick-quote" },
+      { title: "Recruitment Platform", description: "A recruitment platform concept connecting employers and candidates through job listings, applications, candidate pipelines and interview coordination.", image: "/projects/recruitment-dashboard.jpg", alt: "Recruitment Platform dashboard", href: "/work/recruitment-platform" },
+    ],
+    sections: [
+      { title: "From Problem to Practical Solution", content: "I don't approach technology simply as a tool to complete tasks. I look at how information moves through a business, where processes become difficult, and what could be improved. I enjoy turning those observations into structured systems that solve real operational problems." },
+    ],
   },
   "everblue-quick-quote": {
     category: "Digital systems · Business tools",
@@ -181,7 +190,7 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} imageEducation={project.imageEducation} focus={project.focus} sections={project.sections} gallery={project.gallery} galleryPresentation={project.galleryPresentation} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} imageEducation={project.imageEducation} focus={project.focus} selectedProjects={project.selectedProjects} sections={project.sections} gallery={project.gallery} galleryPresentation={project.galleryPresentation} />}
       </div>
     </main>
   );
@@ -215,13 +224,14 @@ const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
   );
 };
 
-const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, sections = [], gallery, galleryPresentation }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; imageEducation?: Project["imageEducation"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"]; galleryPresentation?: Project["galleryPresentation"] }) => (
+const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, selectedProjects, sections = [], gallery, galleryPresentation }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; imageEducation?: Project["imageEducation"]; focus: string[]; selectedProjects?: Project["selectedProjects"]; sections?: Project["sections"]; gallery?: Project["gallery"]; galleryPresentation?: Project["galleryPresentation"] }) => (
   <>
     {image && <figure className={`case-study-image${imageDisplay === "portfolio" ? " case-study-image-portfolio" : ""}`}><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
     {imageEducation && <section className="project-image-education"><h2>{imageEducation.title}</h2><p>{imageEducation.description}</p><ul>{imageEducation.points.map((point) => <li key={point}>{point}</li>)}</ul></section>}
     <div className="project-detail-line" />
     <h2>Project focus</h2>
     <ul>{focus.map((item) => <li key={item}>{item}</li>)}</ul>
+    {selectedProjects && <section className="selected-projects-section"><h2>Selected Digital Projects</h2><div className="selected-projects-grid">{selectedProjects.map((selectedProject) => <Link className="selected-project-card" key={selectedProject.href} to={selectedProject.href}><div className="selected-project-image"><img src={selectedProject.image} alt={selectedProject.alt} /></div><div className="selected-project-card-body"><h3>{selectedProject.title}</h3><p>{selectedProject.description}</p><span>View project <ArrowUpRight size={15} /></span></div></Link>)}</div></section>}
     {sections.map((section) => <section className="case-study-section" key={section.title}><h2>{section.title}</h2>{Array.isArray(section.content) ? <ul>{section.content.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{section.content}</p>}</section>)}
     {gallery && <ProjectGallery screenshots={gallery} presentation={galleryPresentation} />}
     <p className="project-note">This overview reflects the scope of work represented in my portfolio. Further details can be discussed confidentially.</p>
