@@ -1,0 +1,45 @@
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.contact-detail {
+  align-items: center;
+  color: var(--terracotta);
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 10px;
+  line-height: 1.4;
+  min-width: 0;
+  width: fit-content;
+}
+
+.contact-detail svg:first-child {
+  flex: 0 0 auto;
+}
+
+.contact-detail span {
+  overflow-wrap: anywhere;
+}
+
+.contact-detail svg:last-child {
+  flex: 0 0 auto;
+  margin-left: 2px;
+}
+
+.contact-detail:hover {
+  color: var(--ink);
+}
+
+.cv-contact-link {
+  margin-top: 24px;
+}
+
+@media (max-width: 450px) {
+  .contact-detail {
+    font-size: 12px;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../components/CvDownload.css";
 import "../components/Reference.css";
+import "../components/ContactDetails.css";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -8,8 +9,10 @@ import {
   Check,
   ClipboardList,
   FileText,
+  Linkedin,
   Mail,
   Menu,
+  Phone,
   MessageCircle,
   Plane,
   ShieldCheck,
@@ -120,7 +123,17 @@ const Index = () => {
       </section>
 
       <section className="contact-section" id="contact">
-        <div className="contact-heading"><div className="section-label">Say hello</div><h2>Let&apos;s make<br /><em>space for good work.</em></h2><p>Hiring for executive support, operations, or client coordination? I&apos;d love to hear how I can bring immediate value to your team.</p><a className="email-link" href="mailto:gerber.rika@outlook.com"><Mail size={18} /> gerber.rika@outlook.com</a><a className="email-link" href="tel:+27716109591"><span>+27 71 610 9591</span></a><a className="email-link" href="https://www.linkedin.com/in/rika-gerber-9bb095130/" target="_blank" rel="noreferrer"><span>LinkedIn profile <ArrowUpRight size={15} /></span></a><a className="cv-contact-link" href="/resume">View My Resume</a></div>
+        <div className="contact-heading">
+          <div className="section-label">Say hello</div>
+          <h2>Let&apos;s make<br /><em>space for good work.</em></h2>
+          <p>Hiring for executive support, operations, or client coordination? I&apos;d love to hear how I can bring immediate value to your team.</p>
+          <div className="contact-details">
+            <a className="contact-detail" href="mailto:gerber.rika@outlook.com"><Mail size={16} /> <span>gerber.rika@outlook.com</span></a>
+            <a className="contact-detail" href="tel:+27716109591"><Phone size={16} /> <span>+27 71 610 9591</span></a>
+            <a className="contact-detail" href="https://www.linkedin.com/in/rika-gerber-9bb095130/" target="_blank" rel="noreferrer"><Linkedin size={16} /> <span>LinkedIn Profile</span><ArrowUpRight size={14} /></a>
+          </div>
+          <a className="cv-contact-link" href="/resume">View My Resume</a>
+        </div>
         <div className="contact-form-wrap">
           {sent ? <div className="success-message"><span className="success-icon"><Check size={20} /></span><h3>Thank you for reaching out.</h3><p>Your message is on its way. I&apos;ll be in touch soon.</p><button className="underlined-link" onClick={() => setSent(false)}>Send another message</button></div> : <form onSubmit={(event) => { event.preventDefault(); setSent(true); }}><label>Name<input required type="text" placeholder="Your name" /></label><label>Email<input required type="email" placeholder="you@company.com" /></label><label>How can I help?<textarea required placeholder="Tell me a little about what you have in mind..." rows={4} /></label><button type="submit" className="button button-dark">Send your note <ArrowUpRight size={17} /></button></form>}
         </div>
