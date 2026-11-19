@@ -55,14 +55,11 @@ const projects: Record<string, Project> = {
     ],
     gallery: [
       { src: "/projects/nppm-1.jpeg", alt: "NPPM Properties buying or selling promotional artwork", caption: "Promotional artwork helping buyers and sellers connect with NPPM Properties." },
-      { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties offer to purchase educational content", caption: "Educational property content explaining the offer to purchase process." },
       { src: "/projects/nppm-3.jpeg", alt: "NPPM Properties chocolate cake recipe social graphic", caption: "Branded social media content created for audience engagement." },
-      { src: "/projects/nppm-4.jpeg", alt: "NPPM Properties pre-approval benefits educational graphic", caption: "Buyer education content explaining the benefits of pre-approval." },
       { src: "/projects/nppm-5.jpeg", alt: "NPPM Properties spring floral promotional artwork", caption: "Seasonal promotional artwork with NPPM Properties branding." },
       { src: "/projects/nppm-6.jpeg", alt: "NPPM Properties where dreams meet reality graphic", caption: "Visual storytelling graphic supporting the property brand." },
       { src: "/projects/nppm-7.jpeg", alt: "NPPM Properties home and space promotional graphic", caption: "Promotional content encouraging property conversations." },
       { src: "/projects/nppm-8.jpeg", alt: "NPPM Properties property practitioner recruitment graphic", caption: "Recruitment artwork supporting the growth of the property team." },
-      { src: "/projects/nppm-9.jpeg", alt: "NPPM Properties Offer to Purchase Explained infographic", caption: "Additional Offer to Purchase Explained infographic." },
     ],
   },
   "property-brand-content": {
