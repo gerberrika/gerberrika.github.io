@@ -103,8 +103,11 @@
 }
 
 .resume-document-wrap {
+  align-items: flex-start;
   background: #d8d1c8;
+  display: flex;
   height: min(78vh, 900px);
+  justify-content: center;
   min-height: 560px;
   overflow: auto;
   padding: 24px;
@@ -112,12 +115,14 @@
 
 .resume-document {
   background: #fff;
-  border: 0;
+  box-shadow: 0 8px 22px rgba(32, 54, 66, .16);
   display: block;
-  height: 100%;
+  height: auto;
   margin: 0 auto;
-  min-height: 100%;
-  width: min(100%, 760px);
+  max-width: 760px;
+  transform-origin: top center;
+  transition: transform .2s ease;
+  width: 100%;
 }
 
 @media (max-width: 800px) {

@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import "../components/Resume.css";
 
 const resumePath = "/Rika%20Gerber_Resume.pdf";
-const totalPages = 5;
+const resumePages = [
+  "/resume-page-1.jpg",
+  "/resume-page-2.jpg",
+  "/resume-page-3.jpg",
+  "/resume-page-4.jpg",
+  "/resume-page-5.jpg",
+];
 const zoomLevels = [75, 90, 100, 110, 125, 150, 175, 200];
 
 const Resume = () => {
@@ -40,8 +46,8 @@ const Resume = () => {
               <button className="resume-control" type="button" aria-label="Previous page" disabled={page === 1} onClick={() => setPage((current) => Math.max(1, current - 1))}>
                 <ChevronLeft size={18} />
               </button>
-              <span className="resume-page-count">Page {page} of {totalPages}</span>
-              <button className="resume-control" type="button" aria-label="Next page" disabled={page === totalPages} onClick={() => setPage((current) => Math.min(totalPages, current + 1))}>
+              <span className="resume-page-count">Page {page} of {resumePages.length}</span>
+              <button className="resume-control" type="button" aria-label="Next page" disabled={page === resumePages.length} onClick={() => setPage((current) => Math.min(resumePages.length, current + 1))}>
                 <ChevronRight size={18} />
               </button>
             </div>
@@ -56,11 +62,11 @@ const Resume = () => {
             </div>
           </div>
           <div className="resume-document-wrap">
-            <iframe
-              key={`${page}-${zoom}`}
+            <img
               className="resume-document"
-              src={`${resumePath}#page=${page}&zoom=${zoom}`}
-              title={`Resume PDF, page ${page} of ${totalPages}`}
+              src={resumePages[page - 1]}
+              alt={`Resume page ${page} of ${resumePages.length}`}
+              style={{ transform: `scale(${zoom / 100})` }}
             />
           </div>
         </section>
