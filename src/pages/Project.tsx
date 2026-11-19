@@ -1,4 +1,5 @@
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ArrowUpRight, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 type CaseStudy = {
@@ -11,6 +12,14 @@ type CaseStudy = {
   skills: string[];
 };
 
+type GalleryProject = {
+  screenshots: { src: string; alt: string; caption: string }[];
+  overview: string;
+  contribution: string[];
+  skills: string[];
+  closing: string;
+};
+
 type Project = {
   category: string;
   title: string;
@@ -19,6 +28,7 @@ type Project = {
   image?: { src: string; alt: string; caption: string };
   sections?: { title: string; content: string | string[] }[];
   caseStudy?: CaseStudy;
+  galleryProject?: GalleryProject;
 };
 
 const projects: Record<string, Project> = {
@@ -38,6 +48,27 @@ const projects: Record<string, Project> = {
     title: "Turning complex property into clarity",
     description: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships.",
     focus: ["Executive support, complex schedules, and confidential correspondence", "Property transactions, mandates, lease agreements, and legal documentation", "Tenant lifecycle administration, inspections, maintenance, and contractor coordination", "Audit-ready records, compliance certifications, and stakeholder communication"],
+  },
+  "property-brand-content": {
+    category: "Marketing & content · NPPM Properties",
+    title: "Building a Property Brand Through Content & Design",
+    description: "Creating promotional artwork, educational property content and social media materials to help communicate services, inform buyers and sellers, and strengthen the business's visual presence.",
+    focus: [],
+    galleryProject: {
+      screenshots: [
+        { src: "/projects/nppm-1.jpeg", alt: "NPPM Properties buying or selling promotional artwork", caption: "Promotional artwork helping buyers and sellers connect with NPPM Properties." },
+        { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties offer to purchase educational content", caption: "Educational property content explaining the offer to purchase process." },
+        { src: "/projects/nppm-3.jpeg", alt: "NPPM Properties chocolate cake recipe social graphic", caption: "Branded social media content created for audience engagement." },
+        { src: "/projects/nppm-4.jpeg", alt: "NPPM Properties pre-approval benefits educational graphic", caption: "Buyer education content explaining the benefits of pre-approval." },
+        { src: "/projects/nppm-5.jpeg", alt: "NPPM Properties spring floral promotional artwork", caption: "Seasonal promotional artwork with NPPM Properties branding." },
+        { src: "/projects/nppm-6.jpeg", alt: "NPPM Properties where dreams meet reality graphic", caption: "Visual storytelling graphic supporting the property brand." },
+        { src: "/projects/nppm-7.jpeg", alt: "NPPM Properties home and space promotional graphic", caption: "Promotional content encouraging property conversations." },
+      ],
+      overview: "During my time at NPPM Properties, I contributed to the company's marketing and communication through the creation of visual content and promotional materials. My work included designing property-related advertisements, developing educational content for potential buyers and sellers, and creating branded graphics for social media. The aim was to present information in a clear, accessible and visually engaging way while maintaining a consistent business identity.",
+      contribution: ["Promotional marketing artwork and property advertisements", "Educational property content for buyers and sellers", "Social media graphics and written content", "Branded visual communication", "Presenting property information in a clear and accessible format"],
+      skills: ["Marketing & Content Creation", "Graphic Design", "Social Media Communication", "Written Content", "Visual Storytelling", "Brand Consistency", "Client Education"],
+      closing: "This work reflects my ability to combine creativity with practical business communication, presenting information in a way that is clear, engaging and useful to its intended audience.",
+    },
   },
   "brand-content": {
     category: "Digital marketing · Self-employed",
@@ -121,9 +152,26 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : <LegacyProjectContent image={project.image} focus={project.focus} sections={project.sections} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} focus={project.focus} sections={project.sections} />}
       </div>
     </main>
+  );
+};
+
+const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
+  const [preview, setPreview] = useState<GalleryProject["screenshots"][number] | null>(null);
+
+  return (
+    <div className="case-study-content">
+      <section className="gallery-project-section"><h2>Project Overview</h2><p>{project.overview}</p></section>
+      <section className="gallery-project-section"><h2>My Contribution</h2><ul>{project.contribution.map((item) => <li key={item}>{item}</li>)}</ul></section>
+      <div className="project-gallery">
+        {project.screenshots.map((screenshot) => <figure className="project-gallery-card" key={screenshot.src}><button type="button" className="project-gallery-button" onClick={() => setPreview(screenshot)} aria-label={`Open larger preview: ${screenshot.alt}`}><img src={screenshot.src} alt={screenshot.alt} /><span className="project-gallery-expand">View larger</span></button><figcaption>{screenshot.caption}</figcaption></figure>)}
+      </div>
+      <section className="gallery-project-section"><h2>Skills Demonstrated</h2><p>{project.skills.join(" · ")}</p></section>
+      <p className="project-note">{project.closing}</p>
+      {preview && <div className="screenshot-lightbox" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}><button className="lightbox-close" aria-label="Close screenshot preview" onClick={() => setPreview(null)}><X size={20} /></button><figure onClick={(event) => event.stopPropagation()}><img src={preview.src} alt={preview.alt} /><figcaption>{preview.caption}</figcaption></figure></div>}
+    </div>
   );
 };
 
