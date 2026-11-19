@@ -38,6 +38,19 @@
   margin-top: 24px;
 }
 
+.form-error {
+  color: var(--terracotta);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: -6px 0 0;
+}
+
+.contact-form-wrap .button:disabled {
+  cursor: wait;
+  opacity: .7;
+  transform: none;
+}
+
 @media (max-width: 450px) {
   .contact-detail {
     font-size: 12px;
