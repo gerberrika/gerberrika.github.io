@@ -1,0 +1,29 @@
+.reference-secondary {
+  border-top: 1px solid var(--line);
+  margin: 72px auto 0;
+  max-width: 900px;
+  padding-top: 60px;
+}
+
+.reference-secondary .quote-mark {
+  font-size: 58px;
+}
+
+.reference-secondary blockquote {
+  margin-top: 18px;
+}
+
+.reference-secondary blockquote p {
+  margin: 0 auto 18px;
+}
+
+.reference-secondary blockquote p:last-child {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 800px) {
+  .reference-secondary {
+    margin-top: 55px;
+    padding-top: 45px;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../components/CvDownload.css";
+import "../components/Reference.css";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -111,6 +112,11 @@ const Index = () => {
         <div className="quote-mark">“</div>
         <blockquote>Rika brings professionalism, discretion, and genuine care to everything she does. She has a remarkable ability to keep complex work moving while making every person feel supported.</blockquote>
         <div className="quote-attribution"><span className="avatar">HS</span><span><strong>Heidi S.</strong><small>Office Administrator, NPPM Properties</small></span></div>
+        <div className="reference-secondary">
+          <div className="quote-mark">“</div>
+          <blockquote><p>Rika was not only reliable and dedicated but also exhibited a strong work ethic and commitment to achieving the organization’s goals.</p><p>I strongly endorse Rika without reservation and believe that she will exceed all expectations.</p></blockquote>
+          <div className="quote-attribution"><span className="avatar">CE</span><span><strong>Candice Ede</strong><small>Director, Rhythms of Grace / Hopes Anchor</small></span></div>
+        </div>
       </section>
 
       <section className="contact-section" id="contact">
