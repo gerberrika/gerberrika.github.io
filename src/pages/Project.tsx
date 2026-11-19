@@ -27,6 +27,7 @@ type Project = {
   focus: string[];
   image?: { src: string; alt: string; caption: string };
   imageDisplay?: "portfolio";
+  imageEducation?: { title: string; description: string; points: string[] };
   sections?: { title: string; content: string | string[] }[];
   gallery?: GalleryProject["screenshots"];
   caseStudy?: CaseStudy;
@@ -49,7 +50,12 @@ const projects: Record<string, Project> = {
     category: "Operations · NPPM Properties",
     title: "Turning complex property into clarity",
     description: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships.",
-    image: { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties Offer to Purchase artwork", caption: "NPPM Properties – Offer to Purchase Explained." },
+    image: { src: "/projects/nppm-2.jpeg", alt: "NPPM Properties Offer to Purchase artwork", caption: "Offer to Purchase – Buyer Education Infographic" },
+    imageEducation: {
+      title: "Property Education & Visual Communication",
+      description: "An educational infographic designed to make the property purchasing process easier for prospective buyers to understand. I presented important information about the Offer to Purchase in a clear, structured and visually accessible format, helping simplify topics that can often feel complicated or overwhelming.",
+      points: ["Translated property-related information into accessible educational content.", "Structured detailed information into clear, readable sections.", "Designed branded graphics to support buyer awareness and understanding.", "Combined written communication and visual design to make complex property topics easier to follow."],
+    },
     imageDisplay: "portfolio",
     focus: ["Executive support, complex schedules, and confidential correspondence", "Property transactions, mandates, lease agreements, and legal documentation", "Tenant lifecycle administration, inspections, maintenance, and contractor coordination", "Audit-ready records, compliance certifications, and stakeholder communication"],
     sections: [
@@ -159,7 +165,7 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} imageEducation={project.imageEducation} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
       </div>
     </main>
   );
@@ -193,9 +199,10 @@ const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
   );
 };
 
-const LegacyProjectContent = ({ image, imageDisplay, focus, sections = [], gallery }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
+const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, sections = [], gallery }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; imageEducation?: Project["imageEducation"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
   <>
     {image && <figure className={`case-study-image${imageDisplay === "portfolio" ? " case-study-image-portfolio" : ""}`}><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
+    {imageEducation && <section className="project-image-education"><h2>{imageEducation.title}</h2><p>{imageEducation.description}</p><ul>{imageEducation.points.map((point) => <li key={point}>{point}</li>)}</ul></section>}
     <div className="project-detail-line" />
     <h2>Project focus</h2>
     <ul>{focus.map((item) => <li key={item}>{item}</li>)}</ul>
