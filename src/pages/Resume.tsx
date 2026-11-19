@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, ChevronLeft, ChevronRight, Download, ExternalLink, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Download, ZoomIn, ZoomOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../components/Resume.css";
 
@@ -36,7 +36,6 @@ const Resume = () => {
         <p className="project-lead">A complete overview of my experience, skills, and the practical support I bring to ambitious work.</p>
 
         <div className="resume-actions" aria-label="Resume PDF options">
-          <a className="resume-file-link" href={resumePath} target="_blank" rel="noreferrer"><ExternalLink size={15} /> Open original PDF</a>
           <a className="resume-file-link" href={resumePath} download="Rika-Gerber-Resume.pdf"><Download size={15} /> Download PDF</a>
         </div>
 
