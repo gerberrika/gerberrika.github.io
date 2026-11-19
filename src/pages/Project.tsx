@@ -63,6 +63,7 @@ const projects: Record<string, Project> = {
         { src: "/projects/nppm-5.jpeg", alt: "NPPM Properties spring floral promotional artwork", caption: "Seasonal promotional artwork with NPPM Properties branding." },
         { src: "/projects/nppm-6.jpeg", alt: "NPPM Properties where dreams meet reality graphic", caption: "Visual storytelling graphic supporting the property brand." },
         { src: "/projects/nppm-7.jpeg", alt: "NPPM Properties home and space promotional graphic", caption: "Promotional content encouraging property conversations." },
+        { src: "/projects/nppm-8.jpeg", alt: "NPPM Properties property practitioner recruitment graphic", caption: "Recruitment artwork supporting the growth of the property team." },
       ],
       overview: "During my time at NPPM Properties, I contributed to the company's marketing and communication through the creation of visual content and promotional materials. My work included designing property-related advertisements, developing educational content for potential buyers and sellers, and creating branded graphics for social media. The aim was to present information in a clear, accessible and visually engaging way while maintaining a consistent business identity.",
       contribution: ["Promotional marketing artwork and property advertisements", "Educational property content for buyers and sellers", "Social media graphics and written content", "Branded visual communication", "Presenting property information in a clear and accessible format"],
