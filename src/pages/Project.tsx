@@ -54,6 +54,7 @@ const projects: Record<string, Project> = {
       screenshots: [
         { src: "/projects/quick-quote-dashboard.png", alt: "EverBlue Quick Quote dashboard", caption: "Dashboard view for organizing quote activity." },
         { src: "/projects/quick-quote-creation.png", alt: "EverBlue Quick Quote creation screen", caption: "Quote creation with structured line items and pricing." },
+        { src: "/projects/quick-quote-contact.png", alt: "EverBlue Quick Quote contact information screen", caption: "Contact information step for collecting quote details." },
       ],
       overview: "EverBlue Quick Quote is a digital quoting solution focused on bringing quote information, line items, pricing, calculations, and totals into a more organized process.",
       challenge: "Quote creation involves multiple pieces of information that need to stay clear and consistent. This project focused on creating a more structured way to manage that work.",
@@ -89,6 +90,7 @@ const projects: Record<string, Project> = {
     caseStudy: {
       screenshots: [
         { src: "/projects/recruitment-dashboard.jpg", alt: "Recruitment Platform dashboard", caption: "Dashboard overview of the recruitment product in development." },
+        { src: "/projects/recruitment-applicants.png", alt: "Recruitment Platform applicants screen", caption: "Applicants view for reviewing available talent profiles." },
       ],
       overview: "The Recruitment Platform is a digital product currently in development to connect employers and talent through a structured hiring process.",
       challenge: "A hiring process involves opportunities, applications, candidate progress, interviews, notifications, and company users. This project focuses on bringing those parts into a structured recruitment experience.",
