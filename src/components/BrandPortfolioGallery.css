@@ -1,0 +1,7 @@
+@media (max-width: 800px) {
+  .project-gallery-portfolio {
+    display: grid;
+    gap: 34px;
+    grid-template-columns: 1fr;
+  }
+}

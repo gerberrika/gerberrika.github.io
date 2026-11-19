@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowUpRight, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import "../components/BrandPortfolioGallery.css";
 
 type CaseStudy = {
   image: { src: string; alt: string; caption: string };
@@ -30,6 +31,7 @@ type Project = {
   imageEducation?: { title: string; description: string; points: string[] };
   sections?: { title: string; content: string | string[] }[];
   gallery?: GalleryProject["screenshots"];
+  galleryPresentation?: "portfolio";
   caseStudy?: CaseStudy;
   galleryProject?: GalleryProject;
 };
@@ -85,9 +87,23 @@ const projects: Record<string, Project> = {
   },
   "brand-content": {
     category: "Digital marketing · Self-employed",
-    title: "Building brands with purpose",
-    description: "Creating websites, social content, branded materials, and written campaigns that help businesses communicate consistently and connect with their audiences.",
-    focus: ["Professional websites and social media platforms", "Logos, brochures, invitations, and branded assets", "Industry research and tailored communication strategies", "Articles, blogs, and audience engagement content"],
+    title: "Building Brands with Purpose",
+    description: "From brand concepts and product labels to promotional graphics and educational content, I create visual materials that give businesses and ideas a recognisable identity.",
+    focus: ["Brand identity development and visual concepts.", "Logo and promotional graphic design.", "Product labels and packaging artwork.", "Marketing and social media materials.", "Educational and information-based graphics.", "Typography, layout and visual consistency."],
+    sections: [
+      { title: "A Range of Creative Work", content: "Every brand has a different audience, personality and purpose. My approach is to understand what needs to be communicated and create visual content that supports that identity. My work ranges from elegant product branding and professional promotional material to playful, personalised designs." },
+    ],
+    galleryPresentation: "portfolio",
+    gallery: [
+      { src: "/projects/Brand1.jpeg", alt: "Rhythms of Grace brand identity and promotional artwork", caption: "Rhythms of Grace: Brand identity and promotional artwork for a personal creative and writing project." },
+      { src: "/projects/Brand2.jpeg", alt: "Elsa Castor Oil product label design", caption: "Elsa Castor Oil: Product label design and visual presentation for a natural oil product." },
+      { src: "/projects/Brand3.jpeg", alt: "Elsa Body Lotion product label and branding artwork", caption: "Elsa Body Lotion: Product label and branding artwork for a skincare product." },
+      { src: "/projects/Brand4.jpeg", alt: "Build to Create promotional graphic", caption: "Build to Create: Promotional graphic design using bold typography and geometric visual elements." },
+      { src: "/projects/Brand5.jpeg", alt: "English Getahead educational brand graphic", caption: "English Getahead: Educational brand graphic." },
+      { src: "/projects/Brand6.jpeg", alt: "Graceline Thrifted Treasures brand identity concept", caption: "Graceline Thrifted Treasures: Brand identity concept for a thrift and fashion business." },
+      { src: "/projects/Brand7.jpeg", alt: "Branding Strategy visual communication graphic", caption: "Branding Strategy: Visual communication graphic illustrating branding and marketing concepts." },
+      { src: "/projects/Brand8.jpeg", alt: "Nicki M Fish Class 2025 personalised promotional design", caption: "Nicki M Fish Class 2025: Personalised promotional design for a children\'s fish class." },
+    ],
   },
   "digital-systems": {
     category: "Digital systems · Workflow development",
@@ -165,17 +181,17 @@ const Project = () => {
         <p className="section-label">{project.category}</p>
         <h1>{project.title}</h1>
         <p className="project-lead">{project.description}</p>
-        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} imageEducation={project.imageEducation} focus={project.focus} sections={project.sections} gallery={project.gallery} />}
+        {project.caseStudy ? <CaseStudyContent caseStudy={project.caseStudy} /> : project.galleryProject ? <GalleryProjectContent project={project.galleryProject} /> : <LegacyProjectContent image={project.image} imageDisplay={project.imageDisplay} imageEducation={project.imageEducation} focus={project.focus} sections={project.sections} gallery={project.gallery} galleryPresentation={project.galleryPresentation} />}
       </div>
     </main>
   );
 };
 
-const ProjectGallery = ({ screenshots }: { screenshots: GalleryProject["screenshots"] }) => {
+const ProjectGallery = ({ screenshots, presentation }: { screenshots: GalleryProject["screenshots"]; presentation?: "portfolio" }) => {
   const [preview, setPreview] = useState<GalleryProject["screenshots"][number] | null>(null);
 
   return (
-    <div className="project-gallery">
+    <div className={`project-gallery${presentation === "portfolio" ? " project-gallery-portfolio" : ""}`}>
       {screenshots.map((screenshot) => <figure className="project-gallery-card" key={screenshot.src}><button type="button" className="project-gallery-button" onClick={() => setPreview(screenshot)} aria-label={`Open larger preview: ${screenshot.alt}`}><img src={screenshot.src} alt={screenshot.alt} /><span className="project-gallery-expand">View larger</span></button><figcaption>{screenshot.caption}</figcaption></figure>)}
       {preview && <div className="screenshot-lightbox" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}><button className="lightbox-close" aria-label="Close screenshot preview" onClick={() => setPreview(null)}><X size={20} /></button><figure onClick={(event) => event.stopPropagation()}><img src={preview.src} alt={preview.alt} /><figcaption>{preview.caption}</figcaption></figure></div>}
     </div>
@@ -199,7 +215,7 @@ const GalleryProjectContent = ({ project }: { project: GalleryProject }) => {
   );
 };
 
-const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, sections = [], gallery }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; imageEducation?: Project["imageEducation"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"] }) => (
+const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, sections = [], gallery, galleryPresentation }: { image?: Project["image"]; imageDisplay?: Project["imageDisplay"]; imageEducation?: Project["imageEducation"]; focus: string[]; sections?: Project["sections"]; gallery?: Project["gallery"]; galleryPresentation?: Project["galleryPresentation"] }) => (
   <>
     {image && <figure className={`case-study-image${imageDisplay === "portfolio" ? " case-study-image-portfolio" : ""}`}><img src={image.src} alt={image.alt} /><figcaption>{image.caption}</figcaption></figure>}
     {imageEducation && <section className="project-image-education"><h2>{imageEducation.title}</h2><p>{imageEducation.description}</p><ul>{imageEducation.points.map((point) => <li key={point}>{point}</li>)}</ul></section>}
@@ -207,7 +223,7 @@ const LegacyProjectContent = ({ image, imageDisplay, imageEducation, focus, sect
     <h2>Project focus</h2>
     <ul>{focus.map((item) => <li key={item}>{item}</li>)}</ul>
     {sections.map((section) => <section className="case-study-section" key={section.title}><h2>{section.title}</h2>{Array.isArray(section.content) ? <ul>{section.content.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{section.content}</p>}</section>)}
-    {gallery && <ProjectGallery screenshots={gallery} />}
+    {gallery && <ProjectGallery screenshots={gallery} presentation={galleryPresentation} />}
     <p className="project-note">This overview reflects the scope of work represented in my portfolio. Further details can be discussed confidentially.</p>
   </>
 );
