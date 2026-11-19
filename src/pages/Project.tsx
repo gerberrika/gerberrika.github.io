@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 type CaseStudy = {
+  screenshots: { src: string; alt: string }[];
   overview: string;
   challenge: string;
   approach: string;
@@ -49,6 +50,10 @@ const projects: Record<string, Project> = {
     description: "A digital quoting solution designed to make quote creation more organized and efficient. It supports structured quote information, line items, pricing, calculations, and totals.",
     focus: [],
     caseStudy: {
+      screenshots: [
+        { src: "/projects/quick-quote-creation.png", alt: "EverBlue Quick Quote creation screen" },
+        { src: "/projects/quick-quote-dashboard.png", alt: "EverBlue Quick Quote dashboard" },
+      ],
       overview: "EverBlue Quick Quote is a digital quoting solution focused on bringing quote information, line items, pricing, calculations, and totals into a more organized process.",
       challenge: "Quote creation involves multiple pieces of information that need to stay clear and consistent. This project focused on creating a more structured way to manage that work.",
       approach: "I contributed to shaping a practical business tool around the information needed to create and manage quotes, keeping the process organized from quote details through to totals.",
@@ -63,6 +68,10 @@ const projects: Record<string, Project> = {
     description: "A digital business-management system developed around real operational needs. It connects client management, properties, jobs, tasks, scheduling, quotations, follow-ups, and service reporting in one organized workflow.",
     focus: [],
     caseStudy: {
+      screenshots: [
+        { src: "/projects/flow-client-management.png", alt: "EverBlue Flow client management screen" },
+        { src: "/projects/flow-dashboard.png", alt: "EverBlue Flow dashboard" },
+      ],
       overview: "EverBlue Flow is a digital business-management system designed around the connected operational needs of a service business, bringing related information and activities into one organized workflow.",
       challenge: "Client management, properties, jobs, tasks, scheduling, quotations, follow-ups, and service reporting are connected parts of everyday operations. The challenge was to organize those parts so they could be managed together.",
       approach: "I contributed to developing a workflow that connects the operational areas described above, with a focus on making information easier to organize and everyday business activity easier to manage.",
@@ -77,6 +86,9 @@ const projects: Record<string, Project> = {
     description: "A recruitment platform currently in development, designed to connect employers and talent through a structured hiring process. It includes job opportunities, applications, candidate pipelines, interview scheduling, notifications, and company staff management.",
     focus: [],
     caseStudy: {
+      screenshots: [
+        { src: "/projects/recruitment-dashboard.jpg", alt: "Recruitment Platform dashboard" },
+      ],
       overview: "The Recruitment Platform is a digital product currently in development to connect employers and talent through a structured hiring process.",
       challenge: "A hiring process involves opportunities, applications, candidate progress, interviews, notifications, and company users. This project focuses on bringing those parts into a structured recruitment experience.",
       approach: "I contributed to the development of the product around the hiring journey, from job opportunities and applications through candidate pipelines, interview scheduling, notifications, and company staff management.",
@@ -127,15 +139,16 @@ const LegacyProjectContent = ({ focus }: { focus: string[] }) => (
 
 const CaseStudyContent = ({ caseStudy }: { caseStudy: CaseStudy }) => (
   <div className="case-study-content">
-    <div className="case-study-image-placeholder" role="img" aria-label="Project screenshot placeholder">Project screenshot placeholder</div>
+    <div className={`case-study-screenshots ${caseStudy.screenshots.length === 1 ? "single" : ""}`}>
+      {caseStudy.screenshots.map((screenshot) => <figure className="case-study-screenshot" key={screenshot.src}><img src={screenshot.src} alt={screenshot.alt} /><figcaption>{screenshot.alt}</figcaption></figure>)}
+    </div>
     <CaseStudySection title="Project Overview" content={caseStudy.overview} />
     <CaseStudySection title="The Challenge" content={caseStudy.challenge} />
     <CaseStudySection title="My Approach" content={caseStudy.approach} />
     <CaseStudyListSection title="Key Features" items={caseStudy.keyFeatures} />
     <CaseStudyListSection title="My Contribution" items={caseStudy.contribution} />
     <CaseStudyListSection title="Skills Demonstrated" items={caseStudy.skills} />
-    <div className="case-study-image-placeholder secondary" role="img" aria-label="Additional project screenshot placeholder">Additional screenshot placeholder</div>
-    <p className="project-note">This case study reflects the current scope of the project. Further details and screenshots can be added as the work develops.</p>
+    <p className="project-note">This case study reflects the current scope of the project. Further details can be discussed confidentially.</p>
   </div>
 );
 

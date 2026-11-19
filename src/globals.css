@@ -48,3 +48,11 @@ a { color: inherit; text-decoration: none; }
 .case-study-section p { margin: 0; max-width: 680px; }
 .case-study-section ul { display: grid; gap: 10px; margin: 0; padding-left: 20px; }
 @media (max-width: 800px) { .case-study-content { margin-top: 50px; } .case-study-image-placeholder { min-height: 200px; } .case-study-image-placeholder.secondary { margin-top: 40px; min-height: 170px; } }
+
+.case-study-screenshots { display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 65px; }
+.case-study-screenshots.single { grid-template-columns: minmax(0, 1fr); }
+.case-study-screenshot { background: var(--paper); border: 1px solid var(--line); margin: 0; overflow: hidden; }
+.case-study-screenshot img { display: block; height: 280px; object-fit: cover; object-position: top; width: 100%; }
+.case-study-screenshots.single .case-study-screenshot img { height: auto; max-height: 430px; object-fit: contain; }
+.case-study-screenshot figcaption { color: var(--muted); font-size: 10px; letter-spacing: .8px; padding: 12px 15px; text-transform: uppercase; }
+@media (max-width: 800px) { .case-study-screenshots { display: block; margin-bottom: 50px; } .case-study-screenshot { margin-bottom: 18px; } .case-study-screenshot img { height: auto; max-height: 320px; object-fit: contain; } }
