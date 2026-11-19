@@ -52,8 +52,8 @@ a { color: inherit; text-decoration: none; }
 .case-study-screenshots { display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 65px; }
 .case-study-screenshot { background: var(--paper); border: 1px solid var(--line); margin: 0; overflow: hidden; }
 .case-study-screenshot.featured { grid-column: 1 / -1; }
-.screenshot-button { background: var(--paper); border: 0; cursor: zoom-in; display: block; padding: 0; position: relative; width: 100%; }
-.screenshot-button img { display: block; height: auto; max-height: 600px; object-fit: contain; object-position: top; width: 100%; }
+.screenshot-button { background: var(--paper); border: 0; cursor: zoom-in; display: block; height: 360px; padding: 0; position: relative; width: 100%; }
+.screenshot-button img { display: block; height: 100%; object-fit: contain; object-position: center; width: 100%; }
 .screenshot-expand { background: rgba(32,54,66,.88); bottom: 14px; color: #fff; font-size: 10px; font-weight: 700; left: 14px; letter-spacing: 1px; opacity: 0; padding: 9px 12px; position: absolute; text-transform: uppercase; transition: opacity .2s; }
 .screenshot-button:hover .screenshot-expand, .screenshot-button:focus-visible .screenshot-expand { opacity: 1; }
 .case-study-screenshot figcaption { color: var(--muted); font-size: 10px; letter-spacing: .8px; padding: 12px 15px; text-transform: uppercase; }
@@ -62,4 +62,4 @@ a { color: inherit; text-decoration: none; }
 .screenshot-lightbox img { display: block; max-height: calc(100vh - 130px); max-width: 100%; object-fit: contain; }
 .screenshot-lightbox figcaption { color: #fff; font-size: 11px; letter-spacing: .8px; padding-top: 12px; text-align: center; text-transform: uppercase; }
 .lightbox-close { align-items: center; background: var(--terracotta); border: 0; border-radius: 50%; color: #fff; cursor: pointer; display: flex; height: 40px; justify-content: center; position: absolute; right: 25px; top: 25px; width: 40px; }
-@media (max-width: 800px) { .case-study-screenshots { display: block; margin-bottom: 50px; } .case-study-screenshot { margin-bottom: 18px; } .screenshot-button img { max-height: none; } .screenshot-expand { opacity: 1; } .screenshot-lightbox { padding: 55px 15px 25px; } .screenshot-lightbox figure { max-width: 100%; } .screenshot-lightbox img { max-height: calc(100vh - 130px); } .lightbox-close { right: 15px; top: 15px; } }
+@media (max-width: 800px) { .case-study-screenshots { display: block; margin-bottom: 50px; } .case-study-screenshot { margin-bottom: 18px; } .screenshot-button { height: 250px; } .screenshot-expand { opacity: 1; } .screenshot-lightbox { padding: 55px 15px 25px; } .screenshot-lightbox figure { max-width: 100%; } .screenshot-lightbox img { max-height: calc(100vh - 130px); } .lightbox-close { right: 15px; top: 15px; } }
