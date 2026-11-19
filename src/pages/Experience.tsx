@@ -1,8 +1,8 @@
 import "../components/CvDownload.css";
-import { ArrowLeft, Download } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const cvPath = "/Rika-Gerber-Resume.pdf";
+const cvPath = "/Rika%20Gerber_Resume.pdf";
 
 const Experience = () => (
   <main className="project-page experience-page">
@@ -14,7 +14,7 @@ const Experience = () => (
       <p className="section-label">Professional experience</p>
       <h1>Experience</h1>
       <p className="project-lead">A considered blend of executive support, operations, digital systems, communication and creative work.</p>
-      <a className="button button-primary experience-cv-button" href={cvPath} target="_blank" rel="noreferrer"><Download size={17} /> View My Resume</a>
+      <a className="button button-primary experience-cv-button" href={cvPath} target="_blank" rel="noreferrer">View My Resume</a>
     </div>
   </main>
 );
