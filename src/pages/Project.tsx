@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { ArrowLeft, ArrowUpRight, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 type CaseStudy = {
-  screenshots: { src: string; alt: string; caption: string }[];
+  image: { src: string; alt: string; caption: string };
   overview: string;
   challenge: string;
   approach: string;
@@ -51,11 +50,7 @@ const projects: Record<string, Project> = {
     description: "A digital quoting solution designed to make quote creation more organized and efficient. It supports structured quote information, line items, pricing, calculations, and totals.",
     focus: [],
     caseStudy: {
-      screenshots: [
-        { src: "/projects/quick-quote-dashboard.png", alt: "EverBlue Quick Quote dashboard", caption: "Dashboard view for organizing quote activity." },
-        { src: "/projects/quick-quote-creation.png", alt: "EverBlue Quick Quote creation screen", caption: "Quote creation with structured line items and pricing." },
-        { src: "/projects/quick-quote-contact.png", alt: "EverBlue Quick Quote contact information screen", caption: "Contact information step for collecting quote details." },
-      ],
+      image: { src: "/projects/quick-quote-dashboard.png", alt: "EverBlue Quick Quote dashboard", caption: "Dashboard view for organizing quote activity." },
       overview: "EverBlue Quick Quote is a digital quoting solution focused on bringing quote information, line items, pricing, calculations, and totals into a more organized process.",
       challenge: "Quote creation involves multiple pieces of information that need to stay clear and consistent. This project focused on creating a more structured way to manage that work.",
       approach: "I contributed to shaping a practical business tool around the information needed to create and manage quotes, keeping the process organized from quote details through to totals.",
@@ -70,10 +65,7 @@ const projects: Record<string, Project> = {
     description: "A digital business-management system developed around real operational needs. It connects client management, properties, jobs, tasks, scheduling, quotations, follow-ups, and service reporting in one organized workflow.",
     focus: [],
     caseStudy: {
-      screenshots: [
-        { src: "/projects/flow-dashboard.png", alt: "EverBlue Flow dashboard", caption: "Dashboard view of operational work needing attention." },
-        { src: "/projects/flow-client-management.png", alt: "EverBlue Flow client management screen", caption: "Client management view for keeping customer information organized." },
-      ],
+      image: { src: "/projects/flow-dashboard.png", alt: "EverBlue Flow dashboard", caption: "Dashboard view of operational work needing attention." },
       overview: "EverBlue Flow is a digital business-management system designed around the connected operational needs of a service business, bringing related information and activities into one organized workflow.",
       challenge: "Client management, properties, jobs, tasks, scheduling, quotations, follow-ups, and service reporting are connected parts of everyday operations. The challenge was to organize those parts so they could be managed together.",
       approach: "I contributed to developing a workflow that connects the operational areas described above, with a focus on making information easier to organize and everyday business activity easier to manage.",
@@ -88,10 +80,7 @@ const projects: Record<string, Project> = {
     description: "A recruitment platform currently in development, designed to connect employers and talent through a structured hiring process. It includes job opportunities, applications, candidate pipelines, interview scheduling, notifications, and company staff management.",
     focus: [],
     caseStudy: {
-      screenshots: [
-        { src: "/projects/recruitment-dashboard.jpg", alt: "Recruitment Platform dashboard", caption: "Dashboard overview of the recruitment product in development." },
-        { src: "/projects/recruitment-applicants.png", alt: "Recruitment Platform applicants screen", caption: "Applicants view for reviewing available talent profiles." },
-      ],
+      image: { src: "/projects/recruitment-dashboard.jpg", alt: "Recruitment Platform dashboard", caption: "Dashboard overview of the recruitment product in development." },
       overview: "The Recruitment Platform is a digital product currently in development to connect employers and talent through a structured hiring process.",
       challenge: "A hiring process involves opportunities, applications, candidate progress, interviews, notifications, and company users. This project focuses on bringing those parts into a structured recruitment experience.",
       approach: "I contributed to the development of the product around the hiring journey, from job opportunities and applications through candidate pipelines, interview scheduling, notifications, and company staff management.",
@@ -140,33 +129,20 @@ const LegacyProjectContent = ({ focus }: { focus: string[] }) => (
   </>
 );
 
-const CaseStudyContent = ({ caseStudy }: { caseStudy: CaseStudy }) => {
-  const [preview, setPreview] = useState<{ src: string; alt: string; caption: string } | null>(null);
-  const [mainScreenshot, ...additionalScreenshots] = caseStudy.screenshots;
-
-  return (
-    <div className="case-study-content">
-      <div className="case-study-screenshots">
-        <ScreenshotCard screenshot={mainScreenshot} featured onOpen={() => setPreview(mainScreenshot)} />
-        {additionalScreenshots.map((screenshot) => <ScreenshotCard key={screenshot.src} screenshot={screenshot} onOpen={() => setPreview(screenshot)} />)}
-      </div>
-      <CaseStudySection title="Project Overview" content={caseStudy.overview} />
-      <CaseStudySection title="The Challenge" content={caseStudy.challenge} />
-      <CaseStudySection title="My Approach" content={caseStudy.approach} />
-      <CaseStudyListSection title="Key Features" items={caseStudy.keyFeatures} />
-      <CaseStudyListSection title="My Contribution" items={caseStudy.contribution} />
-      <CaseStudyListSection title="Skills Demonstrated" items={caseStudy.skills} />
-      <p className="project-note">This case study reflects the current scope of the project. Further details can be discussed confidentially.</p>
-      {preview && <div className="screenshot-lightbox" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}><button className="lightbox-close" aria-label="Close screenshot preview" onClick={() => setPreview(null)}><X size={20} /></button><figure onClick={(event) => event.stopPropagation()}><img src={preview.src} alt={preview.alt} /><figcaption>{preview.caption}</figcaption></figure></div>}
-    </div>
-  );
-};
-
-const ScreenshotCard = ({ screenshot, featured = false, onOpen }: { screenshot: CaseStudy["screenshots"][number]; featured?: boolean; onOpen: () => void }) => (
-  <figure className={`case-study-screenshot ${featured ? "featured" : ""}`}>
-    <button type="button" className="screenshot-button" onClick={onOpen} aria-label={`Open larger preview: ${screenshot.alt}`}><img src={screenshot.src} alt={screenshot.alt} /><span className="screenshot-expand">View larger</span></button>
-    <figcaption>{screenshot.caption}</figcaption>
-  </figure>
+const CaseStudyContent = ({ caseStudy }: { caseStudy: CaseStudy }) => (
+  <div className="case-study-content">
+    <figure className="case-study-image">
+      <img src={caseStudy.image.src} alt={caseStudy.image.alt} />
+      <figcaption>{caseStudy.image.caption}</figcaption>
+    </figure>
+    <CaseStudySection title="Project Overview" content={caseStudy.overview} />
+    <CaseStudySection title="The Challenge" content={caseStudy.challenge} />
+    <CaseStudySection title="My Approach" content={caseStudy.approach} />
+    <CaseStudyListSection title="Key Features" items={caseStudy.keyFeatures} />
+    <CaseStudyListSection title="My Contribution" items={caseStudy.contribution} />
+    <CaseStudyListSection title="Skills Demonstrated" items={caseStudy.skills} />
+    <p className="project-note">This case study reflects the current scope of the project. Further details can be discussed confidentially.</p>
+  </div>
 );
 
 const CaseStudySection = ({ title, content }: { title: string; content: string }) => (
