@@ -29,6 +29,9 @@ const examples = [
   { number: "02", slug: "property-operations", title: "Turning complex property into clarity", tag: "Operations · NPPM Properties", text: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships." },
   { number: "03", slug: "brand-content", title: "Building brands with purpose", tag: "Digital marketing · Self-employed", text: "Creating websites, social content, branded materials, and written campaigns that help businesses communicate consistently and connect with their audiences." },
   { number: "04", slug: "digital-systems", title: "Building practical digital systems", tag: "Digital systems · Workflow development", text: "Developing connected digital tools and workflows to organize information, streamline business processes, and make everyday operations easier to manage." },
+  { number: "05", slug: "everblue-quick-quote", title: "EverBlue Quick Quote", tag: "Digital systems · Business tools", text: "A digital quoting solution designed to make quote creation more organized and efficient, with structured information, line items, pricing, calculations, and totals." },
+  { number: "06", slug: "everblue-flow", title: "EverBlue Flow", tag: "Business systems · Workflow development", text: "A digital business-management system developed around real operational needs, connecting clients, properties, jobs, tasks, scheduling, quotations, follow-ups, and service reporting." },
+  { number: "07", slug: "recruitment-platform", title: "Recruitment Platform", tag: "Digital product development · Recruitment", text: "A recruitment platform currently in development, designed to connect employers and talent through a structured hiring process." },
 ];
 
 const Index = () => {
