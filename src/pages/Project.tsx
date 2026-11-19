@@ -48,6 +48,10 @@ const projects: Record<string, Project> = {
     title: "Turning complex property into clarity",
     description: "Supporting the Principal while coordinating transactions, contractors, compliance records, maintenance, and sensitive client relationships.",
     focus: ["Executive support, complex schedules, and confidential correspondence", "Property transactions, mandates, lease agreements, and legal documentation", "Tenant lifecycle administration, inspections, maintenance, and contractor coordination", "Audit-ready records, compliance certifications, and stakeholder communication"],
+    sections: [
+      { title: "My Role & Responsibilities", content: ["Administrative and operational support to the Principal", "Property transaction coordination and documentation", "Lease agreements, mandates, and property records", "Client, tenant, contractor, and stakeholder communication", "Property maintenance coordination"] },
+      { title: "Property Marketing & Content", content: ["Property marketing and promotional material", "Educational property content and information graphics"] },
+    ],
   },
   "property-brand-content": {
     category: "Marketing & content · NPPM Properties",
