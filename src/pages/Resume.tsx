@@ -66,7 +66,7 @@ const Resume = () => {
               className="resume-document"
               src={resumePages[page - 1]}
               alt={`Resume page ${page} of ${resumePages.length}`}
-              style={{ transform: `scale(${zoom / 100})` }}
+              style={{ width: `${zoom}%`, maxWidth: zoom === 100 ? "900px" : "none" }}
             />
           </div>
         </section>
