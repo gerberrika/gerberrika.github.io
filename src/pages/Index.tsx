@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
 import "../components/CvDownload.css";
 import "../components/Reference.css";
 import "../components/ContactDetails.css";
@@ -6,7 +6,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   CalendarDays,
-  Check,
   ClipboardList,
   FileText,
   Linkedin,
@@ -42,42 +41,8 @@ const examples = [
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setError("");
-    setSubmitting(true);
-
-    const formData = new FormData(event.currentTarget);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          message: formData.get("message"),
-        }),
-      });
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.statusMessage || "The enquiry could not be sent. Please try again.");
-      }
-
-      setSent(true);
-    } catch (submissionError) {
-      setError(submissionError instanceof Error ? submissionError.message : "The enquiry could not be sent. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   return (
     <main className="site-shell">
@@ -155,7 +120,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
+      <section className="contact-section contact-section-direct" id="contact">
         <div className="contact-heading">
           <div className="section-label">Say hello</div>
           <h2>Let&apos;s make<br /><em>space for good work.</em></h2>
@@ -166,9 +131,6 @@ const Index = () => {
             <a className="contact-detail" href="https://www.linkedin.com/in/rika-gerber-9bb095130/" target="_blank" rel="noreferrer"><Linkedin size={16} /> <span>LinkedIn Profile</span><ArrowUpRight size={14} /></a>
           </div>
           <a className="cv-contact-link" href="/resume">View My Resume</a>
-        </div>
-        <div className="contact-form-wrap">
-          {sent ? <div className="success-message"><span className="success-icon"><Check size={20} /></span><h3>Thank you for reaching out.</h3><p>Your message is on its way. I&apos;ll be in touch soon.</p><button className="underlined-link" onClick={() => setSent(false)}>Send another message</button></div> : <form onSubmit={handleSubmit}><label>Name<input required name="name" type="text" placeholder="Your name" /></label><label>Email<input required name="email" type="email" placeholder="you@company.com" /></label><label>How can I help?<textarea required name="message" placeholder="Tell me a little about what you have in mind..." rows={4} /></label>{error && <p className="form-error" role="alert">{error}</p>}<button type="submit" className="button button-dark" disabled={submitting}>{submitting ? "Sending..." : "Send your note"} {!submitting && <ArrowUpRight size={17} />}</button></form>}
         </div>
       </section>
 
