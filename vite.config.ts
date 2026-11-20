@@ -5,8 +5,8 @@ import path from "path";
 
 import { nitro } from "nitro/vite";
 
-export default defineConfig(() => {
-  const isGithubPagesBuild = process.env.GITHUB_PAGES === "true";
+export default defineConfig(({ mode }) => {
+  const isGithubPagesBuild = mode === "github-pages";
 
   return {
     base: "/",

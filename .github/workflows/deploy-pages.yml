@@ -36,13 +36,19 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build production site
-        run: pnpm build
-        env:
-          GITHUB_PAGES: "true"
+        run: pnpm build -- --mode github-pages
+
+      - name: Verify static assets
+        run: |
+          test -f dist/index.html
+          test -d dist/assets
+          test -n "$(find dist/assets -type f -name '*.js' -print -quit)"
+          test -n "$(find dist/assets -type f -name '*.css' -print -quit)"
+          grep -Eq 'src="/assets/[^" ]+\.js"' dist/index.html
+          grep -Eq 'href="/assets/[^" ]+\.css"' dist/index.html
 
       - name: Prepare SPA fallback
         run: |
-          test -f dist/index.html
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
 
