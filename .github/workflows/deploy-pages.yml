@@ -40,14 +40,14 @@ jobs:
 
       - name: Prepare SPA fallback
         run: |
-          test -f dist/index.html
-          cp dist/index.html dist/404.html
-          touch dist/.nojekyll
+          test -f .output/public/index.html
+          cp .output/public/index.html .output/public/404.html
+          touch .output/public/.nojekyll
 
       - name: Upload production build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: .output/public
 
   deploy:
     environment:
