@@ -37,34 +37,19 @@ jobs:
 
       - name: Build production site
         run: pnpm build
-
-      - name: Diagnose generated output
-        run: |
-          echo "CURRENT DIRECTORY:"
-          pwd
-
-          echo "ROOT FILES:"
-          ls -la
-
-          echo "OUTPUT DIRECTORY:"
-          ls -la .output || true
-
-          echo "PUBLIC OUTPUT:"
-          ls -la .output/public || true
-
-          echo "ALL GENERATED HTML FILES:"
-          find . -maxdepth 7 -type f -name "index.html" -print
+        env:
+          GITHUB_PAGES: "true"
 
       - name: Prepare SPA fallback
         run: |
-          test -f .output/public/index.html
-          cp .output/public/index.html .output/public/404.html
-          touch .output/public/.nojekyll
+          test -f dist/index.html
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
 
       - name: Upload production build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: dist
 
   deploy:
     environment:

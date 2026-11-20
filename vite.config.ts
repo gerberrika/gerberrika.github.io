@@ -5,16 +5,25 @@ import path from "path";
 
 import { nitro } from "nitro/vite";
 
-export default defineConfig(() => ({
-  base: "/",
-  server: {
-    host: "::",
-    port: 8080,
-  },
-  plugins: [dyadComponentTagger(), react(), nitro()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(() => {
+  const isGithubPagesBuild = process.env.GITHUB_PAGES === "true";
+
+  return {
+    base: "/",
+    server: {
+      host: "::",
+      port: 8080,
     },
-  },
-}));
+    plugins: [
+      dyadComponentTagger(),
+      react(),
+      ...(isGithubPagesBuild ? [] : [nitro()]),
+    ],
+    ...(isGithubPagesBuild ? { build: { outDir: "dist" } } : {}),
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+  };
+});
