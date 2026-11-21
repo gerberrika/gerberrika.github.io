@@ -41,14 +41,98 @@ jobs:
       - name: Build production site
         run: pnpm build -- --mode github-pages
 
-      - name: Verify static assets
+      - name: Diagnose static assets
         run: |
-          test -f dist/index.html
-          test -d dist/assets
-          test -n "$(find dist/assets -type f -name '*.js' -print -quit)"
-          test -n "$(find dist/assets -type f -name '*.css' -print -quit)"
-          grep -Eq 'src="/assets/[^" ]+\.js"' dist/index.html
-          grep -Eq 'href="/assets/[^" ]+\.css"' dist/index.html
+          set +e
+          failures=0
+
+          echo "=== DIST FILES ==="
+          if [ -d dist ]; then
+            find dist -type f -print | sort
+          else
+            echo "dist directory does not exist"
+          fi
+
+          echo "=== DIST/ASSETS FILES ==="
+          if [ -d dist/assets ]; then
+            find dist/assets -type f -print | sort
+          else
+            echo "dist/assets directory does not exist"
+          fi
+
+          echo "=== DIST/INDEX.HTML ==="
+          if [ -f dist/index.html ]; then
+            cat dist/index.html
+            echo "PASS: dist/index.html exists"
+          else
+            echo "FAIL: dist/index.html exists"
+            failures=$((failures + 1))
+          fi
+
+          echo "=== JAVASCRIPT FILE CHECK ==="
+          js_files="$(find dist/assets -type f \( -name '*.js' -o -name '*.mjs' \) -print 2>/dev/null)"
+          if [ -n "$js_files" ]; then
+            echo "PASS: JavaScript files exist"
+            printf '%s\n' "$js_files"
+          else
+            echo "FAIL: JavaScript files exist"
+            failures=$((failures + 1))
+          fi
+
+          echo "=== CSS FILE CHECK ==="
+          css_files="$(find dist/assets -type f -name '*.css' -print 2>/dev/null)"
+          if [ -n "$css_files" ]; then
+            echo "PASS: CSS files exist"
+            printf '%s\n' "$css_files"
+          else
+            echo "FAIL: CSS files exist"
+            failures=$((failures + 1))
+          fi
+
+          echo "=== REFERENCED SCRIPT PATHS ==="
+          if [ -f dist/index.html ]; then
+            grep -oE '<script[^>]+src="[^"]+"' dist/index.html || echo "No script paths found"
+          else
+            echo "Cannot inspect script paths: dist/index.html is missing"
+          fi
+
+          echo "=== REFERENCED STYLESHEET PATHS ==="
+          if [ -f dist/index.html ]; then
+            grep -oE '<link[^>]+href="[^"]+"' dist/index.html || echo "No stylesheet paths found"
+          else
+            echo "Cannot inspect stylesheet paths: dist/index.html is missing"
+          fi
+
+          echo "=== COMPILED JAVASCRIPT REFERENCE CHECK ==="
+          if [ -f dist/index.html ] && grep -Eq 'src="/assets/[^" ]+\.(js|mjs)"' dist/index.html; then
+            echo "PASS: HTML references compiled JavaScript under /assets/"
+          else
+            echo "FAIL: HTML references compiled JavaScript under /assets/"
+            failures=$((failures + 1))
+          fi
+
+          echo "=== COMPILED CSS REFERENCE CHECK ==="
+          if [ -f dist/index.html ] && grep -Eq 'href="/assets/[^" ]+\.css"' dist/index.html; then
+            echo "PASS: HTML references compiled CSS under /assets/"
+          else
+            echo "FAIL: HTML references compiled CSS under /assets/"
+            failures=$((failures + 1))
+          fi
+
+          echo "=== SOURCE ENTRYPOINT CHECK ==="
+          if [ -f dist/index.html ] && grep -Eq '(/src/main\.tsx|/src/[^" ]+\.(tsx|ts|jsx|js))' dist/index.html; then
+            echo "FAIL: HTML references uncompiled source files"
+            failures=$((failures + 1))
+          else
+            echo "PASS: HTML does not reference uncompiled source files"
+          fi
+
+          echo "=== DIAGNOSTIC SUMMARY ==="
+          if [ "$failures" -eq 0 ]; then
+            echo "PASS: all diagnostic checks passed"
+          else
+            echo "FAIL: $failures diagnostic check(s) failed"
+          fi
 
       - name: Prepare SPA fallback
         run: |
